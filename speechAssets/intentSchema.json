@@ -1,0 +1,23 @@
+{
+  "intents" : [
+    {
+      "intent" : "PlayerNamesIntent"
+      , "slots": [
+        {
+          "name": "PlayerNumber",
+          "type": "AMAZON.NUMBER"
+        }
+      ]
+    }, {
+      "intent" : "AMAZON.YesIntent"
+    } , {
+      "intent" : "AMAZON.NoIntent"
+    } , {
+      "intent" : "AMAZON.HelpIntent"
+    } , {
+      "intent" : "AMAZON.StopIntent"
+    } , {
+      "intent" : "AMAZON.CancelIntent"
+    }
+  ]
+}
