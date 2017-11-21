@@ -55,6 +55,10 @@ var triviaQuestions = [
     {
         'question' : 'What color are Scotts eyes?'
         , 'answer' : 'Blue'
+    } ,
+    {
+        'question' : ''
+        , 'answer' : ''
     }
 ];
 
