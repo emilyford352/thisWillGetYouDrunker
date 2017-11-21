@@ -173,6 +173,8 @@ function  handleLetsPlay(intent, session, callback) {
     var shouldEndSession = false;
 
     callback(sessionAttributes, buildSpeechletResponse(header, speechOutput, reprompt, shouldEndSession));
+
+    correctTriviaAnswer();
 }
 
 function handleTrivia() {
@@ -182,6 +184,20 @@ function handleTrivia() {
         'everyone drinks...hopefully, you are not all idiots. Heres your question: ' + triviaQuestion.question,
         "answer" : triviaQuestion.answer
     };
+}
+
+function correctTriviaAnswer() {
+    this.emit(':tell', 'You got it right! Wow Im shocked...');
+    resetLetsPlay();
+}
+
+function incorrectTriviaAnswer() {
+    this.emit(':tell', 'Shocker...you are wrong. DRINK EVERYONE!!!');
+    resetLetsPlay();
+}
+
+function resetLetsPlay() {
+    this.emit(':tell', 'Say lets play for...anotha one');
 }
 
 function everyoneDrinks() {
