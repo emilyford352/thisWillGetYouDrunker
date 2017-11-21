@@ -13,7 +13,7 @@ var everyoneDrinks = [
     "Drink if you went to the nail salon within the past month",
     "Drink if you are an asshole",
     "Drink if you like musicals",
-    "Drink if play video games",
+    "Drink if you play video games",
     "Drink if you have an iPhone",
     "Drink if you have an Android",
     "Drink if you like tacos",
@@ -24,41 +24,39 @@ var everyoneDrinks = [
     "Drink if you have ever run over a squirrel",
     "Drink if you have glasses",
     "Drink if you love sushi",
-]
-
-var onePersonDrinksTrivia = [
-    "Whoever had the most recent birthday",
-    "The youngest",
-    "The oldest",
-    "The shortest",
-    "The person with longest hair",
-    "The nicest person",
-    "The biggest asshole ",
-    "The funniest person ",
-    "The nerdiest person ",
-    "The most likely to end up naked, outside their grandma's rosebush at 4am",
-    "The most likely to be a millionare ",
-    "The most athletic ",
-    "The person with the nicest butt ",
-    "The person most likely to go to bed at 9pm ",
-    "The person that is most likely to end up with 18 cats, 9 dogs and athritis ",
-    "The person who will most likely be CEO of Apple ",
+    "Drink if you had the most recent birthday",
+    "Drink if you are the youngest",
+    "Drink if you are the oldest",
+    "Drink if you are the shortest",
+    "Drink if you have longest hair",
+    "Drink if you are the nicest person in the room",
+    "Drink if you are the biggest asshole in the room",
+    "Drink if you are the nerdiest person in the room",
+    "Drink if you are most likely to end up naked, outside your grandma's rosebush at 4am",
+    "Drink if you are most likely to be a millionare ",
+    "Drink if you are the most athletic ",
+    "Drink if you are the person with the nicest butt ",
+    "Drink if you are the person most likely to go to bed at 9pm ",
+    "Drink if you are the person that is most likely to end up with 18 cats, 9 dogs and athritis ",
     "The person most likely to bring an escort to the mall for a date",
-    "The person most likely to streak at a sporting event",
-    "The person most likely to be president",
-    "Most likely to have a Britney Spears breakdown"
-
+    "Drink if you are the person most likely to streak at a sporting event",
+    "Drink if you are most likely to have a Britney Spears breakdown"
 ]
 
 var triviaQuestions = [
     {
-        'question' : 'question 1'
-        , 'answer' : 'test'
+        'question' : 'Who made this game?'
+        , 'answer' : 'Emily Ford'
+    } ,
+    {
+        'question' : 'Who is the current president?'
+        , 'answer' : 'Trump'
+    } ,
+    {
+        'question' : 'What color are Scotts eyes?'
+        , 'answer' : 'Blue'
     }
 ];
-
-
-
 
 // Route the incoming request based on type (LaunchRequest, IntentRequest,
 // etc.) The JSON body of the request is provided in the event parameter.
@@ -119,14 +117,9 @@ function onLaunch(launchRequest, session, callback) {
  */
 function onIntent(intentRequest, session, callback) {
 
-    var intent = intentRequest;
-    var intentName = intentRequest.intent.name;
-
-    handlePlayerNameResponse(intentRequest, session, callback);
-
     // dispatch custom intents to handlers here
-    if (intentName == "PlayerNamesIntent") {
-        handlePlayerNameResponse(intent, session, callback);
+    if (intentRequest.intent.name == "LetsPlayIntent") {
+        handleLetsPlay(intentRequest, session, callback);
     }
 }
 
@@ -141,28 +134,10 @@ function onSessionEnded(sessionEndedRequest, session) {
 // ------- Skill specific logic -------
 
 function getWelcomeResponse(callback) {
-    var speechOutput = "Get ready. If you're not drunk enough already, this game will get you drunker. Tell me" +
-        " how many players there are starting with the phrase there are...including if it's just you, you alcoholic.";
+    var speechOutput = "Get ready. If you're not drunk enough already, this game will get you drunker. Play with as " +
+        "many people as you want...including if it's just you, you alcoholic. To begin, say let's play.";
 
-    var reprompt = "Tell me the names, you filthy animals.";
-
-    var header = "This game will get you drunker!";
-
-    var shouldEndSession = false;
-
-    var sessionAttributes = {
-        "speechOutput" : speechOutput
-        , "repromptText" : reprompt
-    };
-
-    callback(sessionAttributes, buildSpeechletResponse(header, speechOutput, reprompt, shouldEndSession));
-}
-
-function  handlePlayerNameResponse(intent, session, callback) {
-    var speechOutput = "Okay! You have " + intent.intent.slots.PlayerNumber.value + " players. Everyone shout out one " +
-        "of the numbers; whoever was first claims that number. Let's begin. Say let's play to start.";
-
-    var reprompt = "Say let's play!";
+    var reprompt = "Say let's play.";
 
     var header = "This game will get you drunker!";
 
@@ -176,12 +151,42 @@ function  handlePlayerNameResponse(intent, session, callback) {
     callback(sessionAttributes, buildSpeechletResponse(header, speechOutput, reprompt, shouldEndSession));
 }
 
-function handleLetsPlay(intent, session, callback) {
+function  handleLetsPlay(intent, session, callback) {
+    var triviaObject = handleTrivia();
+    var speechOutput = triviaObject.question;
 
+    if (Math.random() > .4) {
+        speechOutput = everyoneDrinks[Math.floor(Math.random() * everyoneDrinks.length)];
+    } else {
+        speechOutput = handleTrivia();
+    }
+
+    var reprompt = "Say let's play for another drink";
+
+    var header = "This game will get you drunker!";
+
+    var sessionAttributes = {
+        "speechOutput" : speechOutput
+        , "repromptText" : reprompt
+    };
+
+    var shouldEndSession = false;
+
+    callback(sessionAttributes, buildSpeechletResponse(header, speechOutput, reprompt, shouldEndSession));
 }
 
-function handleTrivia(intent, session, callback) {
+function handleTrivia() {
+    var triviaQuestion = triviaQuestions[Math.floor(Math.random() * triviaQuestions.length)];
+    return {
+        "question" : 'Trivia Round everyone! Im going to ask you all a question. If no one answers right, ' +
+        'everyone drinks...hopefully, you are not all idiots. Heres your question: ' + triviaQuestion.question,
+        "answer" : triviaQuestion.answer
+    };
+}
 
+function everyoneDrinks() {
+    var speechOutput = everyoneDrinks[Math.floor(Math.random() * everyoneDrinks.length)];
+    return speechOutput;
 }
 
 function handleGetHelpRequest(intent, session, callback) {
