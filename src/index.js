@@ -45,21 +45,187 @@ var everyoneDrinks = [
 
 var triviaQuestions = [
     {
-        'question' : 'Who made this game?'
-        , 'answer' : 'Emily Ford'
+        'question' : 'Who was the 9th US president?'
+        , 'answer' : 'William Henry Harrison'
     } ,
     {
-        'question' : 'Who is the current president?'
-        , 'answer' : 'Trump'
+        'question' : 'Where is the comedian, Adam Sandler, from?'
+        , 'answer' : 'Manchester, NH'
     } ,
     {
-        'question' : 'What color are Scotts eyes?'
-        , 'answer' : 'Blue'
+        'question' : 'On which island was Napoleon exiled following his defeat in Waterloo?'
+        , 'answer' : 'St. Helena'
     } ,
     {
-        'question' : ''
-        , 'answer' : ''
+        'question' : 'What US state is the Flagstaff Pulliam Airport located in?'
+        , 'answer' : 'Arizona'
+    } ,
+    {
+        'question' : 'What US state is the Pocatello Regional Airport located in?'
+        , 'answer' : 'Idaho'
+    } ,
+    {
+        'question' : 'What US state is the Cincinnati Municipal Lunken Airport located in?'
+        , 'answer' : 'Ohio'
+    } ,
+    {
+        'question' : 'What US state is the Palm Springs International Airport located in?'
+        , 'answer' : 'California'
+    } ,
+    {
+        'question' : 'What US state is the Cheyenne Regional Airport located in?'
+        , 'answer' : 'Wyoming'
+    } ,
+    {
+        'question' : 'Who plays Dwight Schrute on the US version of The Office?'
+        , 'answer' : 'Rainn Wilson'
+    } ,
+    {
+        'question' : 'Who is the female lead in the 1978 version of the movie Halloween?'
+        , 'answer' : 'Jamie Lee Curtis'
+    } ,
+    {
+        'question' : 'What is the largest fish in the ocean?'
+        , 'answer' : 'Whale shark'
+    } ,
+    {
+        'question' : 'Where were cats presumed to be first domesticated?'
+        , 'answer' : 'Egypt'
+    } ,
+    {
+        'question' : 'Who was the first man on the moon?'
+        , 'answer' : 'Neil Armstrong'
+    } ,
+    {
+        'question' : 'Who is the lead signer of A C D C'
+        , 'answer' : 'Brian Johnson'
+    } ,
+    {
+        'question' : 'How many continents are in the world?'
+        , 'answer' : 'Seven'
+    } ,
+    {
+        'question' : 'Which countrys national emblem is the beaver'
+        , 'answer' : 'Canada'
+    } ,
+    {
+        'question' : 'How many players are in a baseball team?'
+        , 'answer' : 'Nine'
+    } ,
+    {
+        'question' : 'What is the name of Batmans butler?'
+        , 'answer' : 'Alfred'
+    } ,
+    {
+        'question' : 'Which element is N A?'
+        , 'answer' : 'Sodium'
+    } ,
+    {
+        'question' : 'What city is the capital of China?'
+        , 'answer' : 'Beijing'
+    } ,
+    {
+        'question' : 'What is the most commonly spoken language in the world?'
+        , 'answer' : 'Chinese'
+    } ,
+    {
+        'question' : 'What kind of tree do acorns grow on?'
+        , 'answer' : 'Oak'
+    } ,
+    {
+        'question' : 'How many colors are in the rainbow?'
+        , 'answer' : 'Seven'
+    } ,
+    {
+        'question' : 'In fitness, what does the acronym "BMI" stand for?'
+        , 'answer' : 'Body Mass Index'
+    } ,
+    {
+        'question' : 'What is the capital of North Dakota?'
+        , 'answer' : 'Bismark'
+    } ,
+    {
+        'question' : 'Who is Spongebobs best friend'
+        , 'answer' : 'Patrick'
+    } ,
+    {
+        'question' : 'Where did Sherlock Holmes live?'
+        , 'answer' : '221 B Baker Street'
+    } ,
+    {
+        'question' : 'What do the birds say in Finding Nemo?'
+        , 'answer' : 'Mine!'
+    } ,
+    {
+        'question' : 'When did the movie The Lion King come out?'
+        , 'answer' : '1994'
+    } ,
+    {
+        'question' : 'Where did the Titanic set sail from?'
+        , 'answer' : 'Southampton'
+    } ,
+    {
+        'question' : 'What does corgi mean?'
+        , 'answer' : 'Dward dog'
+    } ,
+    {
+        'question' : 'Do dogs dream?'
+        , 'answer' : 'Yes.'
+    } ,
+    {
+        'question' : 'When did Monopoly come out?'
+        , 'answer' : '1935'
+    } ,
+    {
+        'question' : 'What day of the week is Canadian Thankgiving on?'
+        , 'answer' : 'Monday'
+    } ,
+    {
+        'question' : 'What Disney movie is the song A Whole New World from?'
+        , 'answer' : 'Aladdin'
+    } ,
+    {
+        'question' : 'What was Rudolphs fathers name'
+        , 'answer' : 'Donner'
+    } ,
+    {
+        'question' : 'Where did Halloween originate?'
+        , 'answer' : 'Ireland'
+    } ,
+    {
+        'question' : 'How many times have the red sox won the world series?'
+        , 'answer' : '8'
+    } ,
+    {
+        'question' : 'Who has won the world series the most amount of times?'
+        , 'answer' : 'Yankees'
+    } ,
+    {
+        'question' : 'How many teams are in the NBA?'
+        , 'answer' : '30'
+    } ,
+    {
+        'question' : 'Which of Shakespeares plays is the longest'
+        , 'answer' : 'Hamlet'
+    } ,
+    {
+        'question' : 'Which Shakespeare play is the following quote from: All the perfumes of Arabia will not sweeten' +
+            'this little hand'
+        , 'answer' : 'Macbeth'
+    } ,
+    {
+        'question' : 'What is a group of cats called?'
+        , 'answer' : 'Clowder'
+    } ,
+    {
+        'question' : 'What does the acronym E A stand for?'
+        , 'answer' : 'Electronic Arts'
+    } ,
+    {
+        'question' : 'What year did Alexa originate?'
+        , 'answer' : '2015'
     }
+
 ];
 
 // Route the incoming request based on type (LaunchRequest, IntentRequest,
