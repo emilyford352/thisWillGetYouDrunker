@@ -17,8 +17,6 @@ var everyoneDrinks = [
     "Drink if you have an iPhone",
     "Drink if you have an Android",
     "Drink if you like tacos",
-    "Drink if you have a penis",
-    "Drink if you have boobs",
     "Drink if you like pina cooladas and getting caught in the rain",
     "Drink if you have ever cried watching Titanic",
     "Drink if you have ever run over a squirrel",
@@ -33,9 +31,8 @@ var everyoneDrinks = [
     "Drink if you are the biggest asshole in the room",
     "Drink if you are the nerdiest person in the room",
     "Drink if you are most likely to end up naked, outside your grandma's rosebush at 4am",
-    "Drink if you are most likely to be a millionare ",
-    "Drink if you are the most athletic ",
-    "Drink if you are the person with the nicest butt ",
+    "Drink if you are most likely to be a millionare",
+    "Drink if you are the most athletic",
     "Drink if you are the person most likely to go to bed at 9pm ",
     "Drink if you are the person that is most likely to end up with 18 cats, 9 dogs and athritis ",
     "The person most likely to bring an escort to the mall for a date",
@@ -109,7 +106,7 @@ var triviaQuestions = [
         , 'answer' : 'Canada'
     } ,
     {
-        'question' : 'How many players are in a baseball team?'
+        'question' : 'How many players are on the field in a baseball game?'
         , 'answer' : 'Nine'
     } ,
     {
@@ -149,8 +146,8 @@ var triviaQuestions = [
         , 'answer' : 'Patrick'
     } ,
     {
-        'question' : 'Where did Sherlock Holmes live?'
-        , 'answer' : '221 B Baker Street'
+        'question' : 'What street did Sherlock Holmes live on?'
+        , 'answer' : 'Baker Street'
     } ,
     {
         'question' : 'What do the birds say in Finding Nemo?'
@@ -224,9 +221,13 @@ var triviaQuestions = [
     {
         'question' : 'What year did Alexa originate?'
         , 'answer' : '2015'
+    } , {
+        'question' : 'What band sings the theme song to the popular 90s show Friends'
+        , 'answer' : 'The Remembrandts'
     }
 
 ];
+
 
 // Route the incoming request based on type (LaunchRequest, IntentRequest,
 // etc.) The JSON body of the request is provided in the event parameter.
@@ -268,7 +269,7 @@ exports.handler = function (event, context) {
     }
 };
 
-/**
+/*
  * Called when the session starts.
  */
 function onSessionStarted(sessionStartedRequest, session) {
@@ -328,10 +329,11 @@ function  handleLetsPlay(intent, session, callback) {
     if (Math.random() > .4) {
         speechOutput = everyoneDrinks[Math.floor(Math.random() * everyoneDrinks.length)];
     } else {
-        speechOutput = handleTrivia();
+        var trivia = handleTrivia();
+        speechOutput = trivia.question;
     }
 
-    var reprompt = "Say let's play for another drink";
+    var reprompt = speechOutput + "or say let's play for another drink";
 
     var header = "This game will get you drunker!";
 
@@ -343,8 +345,6 @@ function  handleLetsPlay(intent, session, callback) {
     var shouldEndSession = false;
 
     callback(sessionAttributes, buildSpeechletResponse(header, speechOutput, reprompt, shouldEndSession));
-
-    correctTriviaAnswer();
 }
 
 function handleTrivia() {
@@ -356,18 +356,19 @@ function handleTrivia() {
     };
 }
 
+
 function correctTriviaAnswer() {
-    this.emit(':tell', 'You got it right! Wow Im shocked...');
+    this.emit('You got it right! Wow Im shocked...');
     resetLetsPlay();
 }
 
 function incorrectTriviaAnswer() {
-    this.emit(':tell', 'Shocker...you are wrong. DRINK EVERYONE!!!');
+    this.emit('Shocker...you are wrong. DRINK EVERYONE!!!');
     resetLetsPlay();
 }
 
 function resetLetsPlay() {
-    this.emit(':tell', 'Say lets play for...anotha one');
+    this.emit('Say lets play for...anotha one');
 }
 
 function everyoneDrinks() {
