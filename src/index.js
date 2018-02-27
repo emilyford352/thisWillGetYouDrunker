@@ -228,6 +228,11 @@ var triviaQuestions = [
 
 ];
 
+const GAME_STATES = {
+    TRIVIA: '_TRIVIAMODE', // Asking trivia questions.
+    START: '_STARTMODE', // Entry point, start the game.
+    HELP: '_HELPMODE', // The user is asking for help.
+};
 
 // Route the incoming request based on type (LaunchRequest, IntentRequest,
 // etc.) The JSON body of the request is provided in the event parameter.
@@ -287,10 +292,13 @@ function onLaunch(launchRequest, session, callback) {
  * Called when the user specifies an intent for this skill.
  */
 function onIntent(intentRequest, session, callback) {
+    //handleLetsPlay(intentRequest, session, callback);
 
     // dispatch custom intents to handlers here
     if (intentRequest.intent.name == "LetsPlayIntent") {
         handleLetsPlay(intentRequest, session, callback);
+    } else {
+        handleOther(intentRequest, session, callback);
     }
 }
 
@@ -334,6 +342,23 @@ function  handleLetsPlay(intent, session, callback) {
     }
 
     var reprompt = speechOutput + "or say let's play for another drink";
+
+    var header = "This game will get you drunker!";
+
+    var sessionAttributes = {
+        "speechOutput" : speechOutput
+        , "repromptText" : reprompt
+    };
+
+    var shouldEndSession = false;
+
+    callback(sessionAttributes, buildSpeechletResponse(header, speechOutput, reprompt, shouldEndSession));
+}
+
+function handleOther(intent, session, callback){
+    var speechOutput = 'Say lets play for a way to get drunk';
+
+    var reprompt = speechOutput;
 
     var header = "This game will get you drunker!";
 
